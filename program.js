@@ -45,7 +45,7 @@ alert(o.name);//apply在这里相当于方法调用
 
 //给类型增加方法：
 Function.prototype.method = function (name , func ){
-	this.prototype[name] = func;
+	this.prototype[name] = func;//测试的时候发现，此处的name可以当做变量传入，但写成this.prototype.name时，变量name不能传入，直接定义为name了。
 	return this;
 }
 
@@ -53,7 +53,7 @@ function Person(name){
     this.name=name;//每个person实例对象私有属性
 }
             
-Person.prototype.share=[];//每个person实例对象共有属性
+Person.prototype.share=[];//每个person实例对象共有属性（原型的主要作用）
             
 Person.prototype.printName=function(){
 	alert(this.name);
@@ -69,4 +69,6 @@ person2.share.push(22);
 console.info(person1);
 console.info(person1.share);//测试share是否是person1和person2共有属性
 console.info(person2.share);
+
+//Javascript有两组相等运算符，一组是==和!=，另一组是===和!==。前者只比较值的相等，后者除了值以外，还比较类型是否相同。
 
